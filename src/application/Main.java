@@ -6,19 +6,21 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.ConvertToMp3;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
+			VBox root = new VBox();
 			Button selectFile = new Button("Select File");
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Resource File");
@@ -36,7 +38,8 @@ public class Main extends Application {
 	                    }
 				}
 			});
-			root.setCenter(selectFile);
+			root.getChildren().addAll(selectFile);
+			root.setAlignment(Pos.CENTER);
 			
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
