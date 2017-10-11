@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.ConvertToMp3;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -28,7 +29,9 @@ public class Main extends Application {
 					List<File> list = fileChooser.showOpenMultipleDialog(primaryStage);
 	                    if (list != null) {
 	                        for (File file : list) {
-	                            System.out.println(file);
+	                        	String destination = "C:\\Users\\itsix\\Desktop";
+	                    		//File video = new File("C:\\Users\\itsix\\Desktop\\Tropkillaz - Pump it.mp4");
+	                    		ConvertToMp3.ConvertToAudio(file, destination);
 	                        }
 	                    }
 				}
