@@ -17,7 +17,6 @@ public class ConvertToMp3Thread implements Runnable{
 
 	@Override
 	public void run() {
-		System.out.println("converting, start");
 		ConvertToMp3.ConvertToAudio(video, destination);
 		
 	}

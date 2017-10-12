@@ -12,10 +12,9 @@ public class ConvertToMp3{
 	public static void ConvertToAudio(File video, String destination) {
 		System.out.println("start");
 		String fileName = video.getName().substring(0, video.getName().length() - 4);;
-		System.out.println(fileName);
 		String dest = destination + "\\" + fileName;
 		File audio = new File(dest + ".mp3");
-		ProgressBar pBar = new ProgressBar();
+		ProgressBar pBar = new ProgressBar(fileName);
 		
 		AudioAttributes audioAtrr = new AudioAttributes();
 		audioAtrr.setCodec(new String("libmp3lame"));
