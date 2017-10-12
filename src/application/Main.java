@@ -1,22 +1,24 @@
 package application;
 	
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import model.ConvertToMp3;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import model.ControllerThreads;
+import model.ConvertToMp3Thread;
 
 
 public class Main extends Application {
+	List<ConvertToMp3Thread> listOfThreads = new ArrayList<>();
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -27,14 +29,9 @@ public class Main extends Application {
 			selectFile.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					
 					List<File> list = fileChooser.showOpenMultipleDialog(primaryStage);
 	                    if (list != null) {
-	                        for (File file : list) {
-	                        	String destination = "C:\\Users\\itsix\\Desktop";
-	                    		//File video = new File("C:\\Users\\itsix\\Desktop\\Tropkillaz - Pump it.mp4");
-	                    		ConvertToMp3.ConvertToAudio(file, destination);
-	                        }
+	                    	ControllerThreads cT = new ControllerThreads(list);
 	                    }
 				}
 			});
