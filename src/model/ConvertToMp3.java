@@ -6,15 +6,17 @@ import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncoderException;
 import it.sauronsoftware.jave.EncodingAttributes;
 import it.sauronsoftware.jave.InputFormatException;
+import javafx.scene.text.Text;
 
 public class ConvertToMp3{
 
-	public static void ConvertToAudio(File video, String destination) {
+	public static void ConvertToAudio(File video, String destination, Text text) {
 		System.out.println("start");
+		text.setText(text.getText() + "start" + "\n");
 		String fileName = video.getName().substring(0, video.getName().length() - 4);;
 		String dest = destination + "\\" + fileName;
 		File audio = new File(dest + ".mp3");
-		ProgressBar pBar = new ProgressBar(fileName);
+		ProgressBar pBar = new ProgressBar(fileName, text);
 		
 		AudioAttributes audioAtrr = new AudioAttributes();
 		audioAtrr.setCodec(new String("libmp3lame"));
@@ -30,6 +32,7 @@ public class ConvertToMp3{
 		try {
 			encoder.encode(video, audio, encAtrr, pBar);
 			System.out.println("end");
+			text.setText(text.getText() + "end\n");
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (InputFormatException e) {
